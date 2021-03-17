@@ -297,8 +297,8 @@ public class AdminController {
 		 }
 	}
 	
-	//USERS
 	
+	//show all users
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> AllUsers() {
 
@@ -312,7 +312,7 @@ public class AdminController {
 		
 	}
 
-	
+	//show locked users
 	@GetMapping(path="/user/lockedusers")
 	public ResponseEntity<List<User>> getLocked(){
 		
@@ -327,6 +327,8 @@ public class AdminController {
 		
 		}
 	}
+	
+	//unlock the user
 	@PutMapping(path="/user/unlockuser/{u_id}")
 	public ResponseEntity<Boolean> unlock(@PathVariable int u_id){
 		boolean b=asi.unlocakAccount(u_id); 
@@ -338,6 +340,8 @@ public class AdminController {
 		 }
 		 
 	}
+	
+	//lock the user
 	@PutMapping(path="/user/lockuser/{u_id}")
 	public ResponseEntity<Boolean> lock(@PathVariable int u_id){
 		boolean b= asi.lockAccount(u_id);

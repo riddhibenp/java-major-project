@@ -14,11 +14,11 @@ public class UserController {
 	@Autowired
 	UserService usi;
 	
+	
+	//show all users
 	@GetMapping("/user/total")
 	public long totalUsers() {
 		return usi.getUserCount();
 	}
-	
-	
 	
 }

@@ -17,7 +17,7 @@ public interface AdminService {
 
 	public void deleteCategory(int id);
 
-	public boolean updateCategory(Category c,Optional<Category> ctest,int id);
+	public boolean updateCategory(Category c, Optional<Category> ctest, int id);
 
 	public List<Course> getAllCourse();
 
@@ -27,30 +27,30 @@ public interface AdminService {
 
 	public void deleteCourse(int i);
 
-	public boolean updateCourse(Course c,Optional<Course> ctest);
+	public boolean updateCourse(Course c, Optional<Course> ctest);
 
 	public List<Video> getAllVideo();
 
 	public Optional<Video> getVideoById(int id);
 
-	public boolean addVideo(Video v,int id);
+	public boolean addVideo(Video v, int id);
 
 	public void deleteVideo(int i);
 
-	boolean updateVideo(Video v,int id);
-	
+	boolean updateVideo(Video v, int id);
+
 	public long getCategoryCount();
 
 	public long getCourseCount();
-	
+
 	public long getVideoCount();
-	
-	public boolean lockAccount(int uid);
-	
-	public boolean unlocakAccount(int uid);
-	
-	public List<User> getLockedAccount();
 
 	public List<User> getAllUser();
-	
+
+	public List<User> getLockedAccount();
+
+	public boolean unlocakAccount(int uid);
+
+	public boolean lockAccount(int uid);
+
 }
