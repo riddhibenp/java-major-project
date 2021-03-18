@@ -41,7 +41,7 @@ public class AdminController {
 	public ResponseEntity<List<Category>> AllCategory() {
 		List<Category> li = asi.getAllCategory();
 		if(li.size()==0) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(li);
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No category found!!!");
 		}
 		else{
 			return ResponseEntity.status(HttpStatus.OK).body(li);
@@ -56,7 +56,7 @@ public class AdminController {
 		 Optional<Category> c=asi.getCategoryById(id);
 		 
 		 if(c.isEmpty()) {
-			 return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(c);
+			 throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No category found!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(c); 
@@ -70,7 +70,7 @@ public class AdminController {
 	public  ResponseEntity<Boolean> addCategory(@RequestBody Category c) {
 		boolean b= asi.addCategory(c);
 		 if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Category not addedd!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
@@ -84,7 +84,7 @@ public class AdminController {
 		
 		Optional<Category> c=asi.getCategoryById(id); 
 		 if(c.isEmpty()) {
-			 return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+			 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Given category not found, so cannot be deleted!!!");
 		 }
 		 else {
 			 asi.deleteCategory(id);
@@ -101,7 +101,7 @@ public class AdminController {
 		Optional<Category> ctest=asi.getCategoryById(cat_id);
 		boolean b=asi.updateCategory(c,ctest,cat_id);
 		 if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Category not updated!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
@@ -115,7 +115,7 @@ public class AdminController {
 		int c;
 		c=(int) asi.getCategoryCount();
 		 if(c==0) {
-			 return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(c);
+			 throw new ResponseStatusException(HttpStatus.NO_CONTENT,"Category count is '0'!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(c); 
@@ -131,7 +131,7 @@ public class AdminController {
 	public ResponseEntity<List<Course>> AllCourse() {
 		List<Course> li = asi.getAllCourse();
 		if(li.size()==0) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(li);
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No course found!!!");
 			
 			}
 			else{
@@ -146,7 +146,7 @@ public class AdminController {
 		
 		Optional<Course> c=asi.getCourseById(id);
 		 if(c.isEmpty()) {
-			 return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(c);
+			 throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No course found!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(c); 
@@ -159,7 +159,7 @@ public class AdminController {
 	public ResponseEntity<Boolean> addCourse(@RequestBody Course c, @PathVariable int cat_id) {
 		boolean b=asi.addCourse(c, cat_id);
 		if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Course not addedd!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
@@ -171,7 +171,7 @@ public class AdminController {
 	public ResponseEntity<Boolean> deleteCourse(@PathVariable int id) {
 		Optional<Course> c=asi.getCourseById(id); 
 		if(c.isEmpty()) {
-			 return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+			 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Given course not found, so cannot be deleted!!!");
 		 }
 		 else {
 			 asi.deleteCourse(id);
@@ -186,7 +186,7 @@ public class AdminController {
 		Optional<Course> ctest=asi.getCourseById(co_id);
 		boolean b= asi.updateCourse(c,ctest);
 		if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Course not updated!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
@@ -201,7 +201,7 @@ public class AdminController {
 			int c;
 			c=(int) asi.getCourseCount();
 			 if(c==0) {
-				 return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(c);
+				 throw new ResponseStatusException(HttpStatus.NO_CONTENT,"Course count is '0'!!!");
 			 }
 			 else {
 				 return  ResponseEntity.status(HttpStatus.OK).body(c); 
@@ -216,7 +216,7 @@ public class AdminController {
 		List<Video> li2 = asi.getAllVideo();
 		
 		if(li2.size()==0) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(li2);
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No video found!!!");
 			
 			}
 			else{
@@ -230,7 +230,7 @@ public class AdminController {
 	public ResponseEntity<Optional<Video>> VideoById(@PathVariable int id) {
 		Optional<Video> v=asi.getVideoById(id);
 		 if(v.isEmpty()) {
-			 return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(v);
+			 throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No video found!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(v); 
@@ -245,7 +245,7 @@ public class AdminController {
 		
 		
 		if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Video not addedd!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
@@ -259,7 +259,7 @@ public class AdminController {
 		Optional<Video> c=asi.getVideoById(id); 
 		
 		if(c.isEmpty()) {
-			 return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Given video not found, so cannot be deleted!!!");
 		 }
 		 else {
 			 asi.deleteVideo(id);
@@ -274,7 +274,7 @@ public class AdminController {
 		boolean b= asi.updateVideo(v,co_id);
 		
 		if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Video not updated!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
@@ -284,13 +284,13 @@ public class AdminController {
 	}
 	
 	
-	// total courses
+	// total videos
 	@GetMapping("/video/total")
 	public ResponseEntity<Integer> totalVideos() {
 		int c;
 		c=(int) asi.getVideoCount();
 		 if(c==0) {
-			 return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(c);
+			 throw new ResponseStatusException(HttpStatus.NO_CONTENT,"Video count is '0'!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(c); 
@@ -304,7 +304,7 @@ public class AdminController {
 
 		List<User> li = asi.getAllUser();
 		if(li.size()==0) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(li);
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No user found!!!");
 			}
 			else{
 				return ResponseEntity.status(HttpStatus.OK).body(li);
@@ -319,7 +319,7 @@ public class AdminController {
 		List<User>userList=asi.getLockedAccount();
 		 
 		if(userList.size()==0) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userList);
+			throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No locked user found!!!");
 		}
 		else{
 			
@@ -333,7 +333,7 @@ public class AdminController {
 	public ResponseEntity<Boolean> unlock(@PathVariable int u_id){
 		boolean b=asi.unlocakAccount(u_id); 
 		 if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"User not unlocked!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
@@ -346,7 +346,7 @@ public class AdminController {
 	public ResponseEntity<Boolean> lock(@PathVariable int u_id){
 		boolean b= asi.lockAccount(u_id);
 		 if(b==false) {
-			 return  ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(b);
+			 throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"User not locked!!!");
 		 }
 		 else {
 			 return  ResponseEntity.status(HttpStatus.OK).body(b); 
