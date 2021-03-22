@@ -47,12 +47,8 @@ public class User {
     @JoinColumn(name="userId", referencedColumnName = "userId")
     List<Like> likes;
 		
-//	
-//	 @OneToOne(fetch = FetchType.LAZY,
-//	    		optional = false)
-//	 @JoinColumn(name="resultID",nullable = false,referencedColumnName = "resultID")
-//	 private Result result;
-//	
+
+	
 	@OneToMany(targetEntity = Feedback.class,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="userId", referencedColumnName = "userId")
 	List<Feedback> feedbacks;
@@ -119,10 +115,5 @@ public class User {
 	}
 	
 	
-//	public String getProfile() {
-//		return profile.getFullName();
-//	}
-//	public void setProfile(Profile profile) {
-//		this.profile = profile;
-//	}
+
 }

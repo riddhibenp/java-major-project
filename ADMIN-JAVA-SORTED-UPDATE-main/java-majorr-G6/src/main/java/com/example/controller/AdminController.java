@@ -304,7 +304,7 @@ public class AdminController {
 
 		List<User> li = asi.getAllUser();
 		if(li.size()==0) {
-			throw new ResponseStatusException(HttpStatus.NO_CONTENT,"No user found!!!");
+			throw new ResponseStatusException(HttpStatus.OK,"No user found!!!");
 			}
 			else{
 				return ResponseEntity.status(HttpStatus.OK).body(li);
